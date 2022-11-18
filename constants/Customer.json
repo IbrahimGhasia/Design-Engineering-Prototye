@@ -1,0 +1,90 @@
+[
+	{
+		"type": "constructor",
+		"payable": false,
+		"inputs": [{ "type": "address", "name": "registry" }]
+	},
+	{
+		"type": "function",
+		"name": "createCustomerBankDetails",
+		"constant": false,
+		"payable": false,
+		"gas": 7000000,
+		"inputs": [
+			{ "type": "string", "name": "custHolderName" },
+			{ "type": "string", "name": "custAccountNumber" },
+			{ "type": "string", "name": "custBranch" },
+			{ "type": "string", "name": "custBank" }
+		],
+		"outputs": []
+	},
+	{
+		"type": "function",
+		"name": "createCustomerPersonalDetails",
+		"constant": false,
+		"payable": false,
+		"gas": 7000000,
+		"inputs": [
+			{ "type": "string", "name": "custName" },
+			{ "type": "string", "name": "custDob" },
+			{ "type": "string", "name": "custGender" },
+			{ "type": "string", "name": "custAddress" },
+			{ "type": "string", "name": "custContactNumber" },
+			{ "type": "string", "name": "custEmail" }
+		],
+		"outputs": []
+	},
+	{
+		"type": "function",
+		"name": "customerBankDetailsTableURI",
+		"constant": true,
+		"stateMutability": "view",
+		"payable": false,
+		"gas": 7000000,
+		"inputs": [],
+		"outputs": [{ "type": "string" }]
+	},
+	{
+		"type": "function",
+		"name": "customerTableURI",
+		"constant": true,
+		"stateMutability": "view",
+		"payable": false,
+		"gas": 7000000,
+		"inputs": [],
+		"outputs": [{ "type": "string" }]
+	},
+	{
+		"type": "function",
+		"name": "onERC721Received",
+		"constant": false,
+		"payable": false,
+		"gas": 7000000,
+		"inputs": [
+			{ "type": "address" },
+			{ "type": "address" },
+			{ "type": "uint256" },
+			{ "type": "bytes" }
+		],
+		"outputs": [{ "type": "bytes4" }]
+	},
+	{
+		"type": "function",
+		"name": "owner",
+		"constant": true,
+		"stateMutability": "view",
+		"payable": false,
+		"gas": 7000000,
+		"inputs": [],
+		"outputs": [{ "type": "address" }]
+	},
+	{
+		"type": "function",
+		"name": "setTableURI",
+		"constant": false,
+		"payable": false,
+		"gas": 7000000,
+		"inputs": [{ "type": "string", "name": "baseURI" }],
+		"outputs": []
+	}
+]

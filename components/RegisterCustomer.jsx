@@ -20,10 +20,19 @@ import {
 	IconSquareNumber0,
 	IconPin,
 	IconCircleCheck,
+	IconX,
+	IconCheck,
 } from '@tabler/icons';
 import { useState } from 'react';
+import { ethers } from 'ethers';
+import { showNotification, updateNotification } from '@mantine/notifications';
+import { useAccount, useSigner } from 'wagmi';
+import { customerAbi, customerContractAddress, tableland } from '../constants';
 
 const RegisterCustomer = () => {
+	const { isConnected } = useAccount();
+	const { data: signer, isError, isLoading } = useSigner();
+
 	const [custName, setCustName] = useState('');
 	const [bod, setBod] = useState(new Date());
 	const [gender, setGender] = useState('');
@@ -35,21 +44,77 @@ const RegisterCustomer = () => {
 	const [branch, setBranch] = useState('');
 	const [bank, setBank] = useState('');
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
+		event.preventDefault();
+		if (!isConnected) {
+			showNotification({
+				id: 'walletNotConnected',
+				autoClose: 5000,
+				title: 'Connect Wallet',
+				message: 'Please Connect your wallet to register',
+				color: 'red',
+				icon: <IconX />,
+				className: 'my-notification-class',
+				loading: false,
+			});
+			return;
+		}
 
-		console.log(
+		showNotification({
+			id: 'load-data',
+			loading: true,
+			title: 'Posting Customer Details ...',
+			message:
+				'Please wait while we are posting your content to the blockchain',
+			autoClose: false,
+			disallowClose: true,
+		});
+
+		const contractInstance = new ethers.Contract(
+			customerContractAddress,
+			customerAbi,
+			signer
+		);
+
+		const tx = await contractInstance.createCustomerPersonalDetails(
 			custName,
 			bod,
 			gender,
 			address,
 			contact,
-			email,
+			email
+		);
+		console.log(tx.hash);
+		console.log('-----------------------------');
+		const response = await tx.wait();
+		console.log('Customer Personal Details Added');
+		console.log('response');
+		console.log(response);
+		console.log('-----------------------------');
+
+		const tx2 = await contractInstance.createCustomerBankDetails(
 			holderName,
 			accNumber,
 			branch,
 			bank
 		);
+		console.log(tx2.hash);
+		console.log('-----------------------------');
+		const response2 = await tx2.wait();
+		console.log('Customer Bank Details Added');
+		console.log('response');
+		console.log(response2);
+		console.log('-----------------------------');
+
+		updateNotification({
+			id: 'load-data',
+			color: 'teal',
+			title: 'Posted Successfully',
+			message: 'Customer Details Added Successfully',
+			icon: <IconCheck size={16} />,
+			autoClose: 2000,
+		});
 	};
 	return (
 		<div>
