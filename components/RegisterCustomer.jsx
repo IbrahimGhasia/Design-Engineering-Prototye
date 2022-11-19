@@ -61,6 +61,30 @@ const RegisterCustomer = () => {
 			return;
 		}
 
+		if (
+			custName.length === 0 ||
+			bod.length === 0 ||
+			gender.length === 0 ||
+			address.length === 0 ||
+			contact.length === 0 ||
+			email.length === 0 ||
+			holderName.length === 0 ||
+			accNumber.length === 0 ||
+			branch.length === 0 ||
+			bank.length === 0
+		) {
+			showNotification({
+				id: 'incompleteField',
+				autoClose: 5000,
+				title: 'Incomplete Field',
+				message: 'Fill all the mandatory (*) Field',
+				color: 'red',
+				icon: <IconX />,
+				className: 'my-notification-class',
+				loading: false,
+			});
+			return;
+		}
 		showNotification({
 			id: 'load-data',
 			loading: true,

@@ -108,7 +108,7 @@ const useStyles = createStyles((theme, _params, getRef) => {
 
 const data = [
 	{ link: '/home', label: 'Home', icon: IconHome },
-	{ link: '/', label: 'View Customers', icon: IconUsers },
+	{ link: '/customers', label: 'View Customers', icon: IconUsers },
 	{ link: '/register', label: 'Add new Customer', icon: IconUserPlus },
 ];
 

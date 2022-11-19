@@ -1,4 +1,5 @@
 import Layout from '../components/Layout';
+import ViewCustomer from '../components/ViewCustomer';
 import { Center, Title, Button, Group } from '@mantine/core';
 import { IconUserPlus } from '@tabler/icons';
 import Link from 'next/link';
@@ -23,6 +24,8 @@ export default function Home() {
 						</Button>
 					</Link>
 				</Center>
+
+				<ViewCustomer />
 			</Layout>
 		</div>
 	);
