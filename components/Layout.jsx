@@ -20,6 +20,7 @@ import {
 	IconHome,
 	IconUserPlus,
 	IconUsers,
+	IconCashBanknote,
 } from '@tabler/icons';
 import Link from 'next/link';
 
@@ -108,8 +109,13 @@ const useStyles = createStyles((theme, _params, getRef) => {
 
 const data = [
 	{ link: '/home', label: 'Home', icon: IconHome },
-	{ link: '/customers', label: 'View Customers', icon: IconUsers },
 	{ link: '/register', label: 'Add new Customer', icon: IconUserPlus },
+	{ link: '/customers', label: 'View Customers', icon: IconUsers },
+	{
+		link: '/bankdetails',
+		label: 'Customer Bank Details',
+		icon: IconCashBanknote,
+	},
 ];
 
 export default function Layout(props) {
